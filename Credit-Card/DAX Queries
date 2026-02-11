@@ -1,0 +1,27 @@
+# Perfomed DAX Queries
+
+# Total Revenue 
+Revenue = 'Credit card'[Annual_Fees] + 'Credit card'[Total_Trans_Amt] + 'Credit card'[Interest_Earned]
+
+# Calculating Week Number
+week_num2 = WEEKNUM('Credit card'[Week_Start_Date])
+
+# Grouping Ages for better understanding 
+AgeGroup = SWITCH(
+    TRUE(),
+    'customer'[Customer_Age] < 30, "20-30",
+    'customer'[Customer_Age] >= 30 && customer[Customer_Age] < 40, "30-40",
+    'customer'[Customer_Age] >= 40 && customer[Customer_Age] < 50, "40-50",
+    'customer'[Customer_Age] >= 50 && customer[Customer_Age] < 60, "50-60",
+    'customer'[Customer_Age] >=60, "60-70",
+    "unknown"
+)
+
+# Grouping Income Range
+Income_Range = SWITCH(
+    TRUE(),
+    'customer'[Income] < 35000, "Low",
+    'customer'[Income] >= 35000 && customer[Income] < 70000, "Med",
+    'customer'[Income] >= 70000, "High",
+    "unknown"
+)
